@@ -31,9 +31,9 @@ export const App = () => {
   };
 
   useEffect(() => {
-    if (query === '') return;
+    if (query === '') return; //щоб не запускалась на етапі першого mount компонента
 
-    const fetchImages = async () => {
+    const fetchImages = async (query, page) => {
       try {
         setIsLoading(true);
         const data = await requestImages(query, page);
@@ -56,7 +56,7 @@ export const App = () => {
         setIsLoading(false);
       }
     };
-    fetchImages();
+    fetchImages(query, page);
   }, [query, page]);
 
   return (
@@ -70,7 +70,7 @@ export const App = () => {
       )}
       {isLoading && <Loader />}
       {error && <p>Oops, something went wrong {error}</p>}
-      <ToastContainer autoClose={4000} />
+      <ToastContainer autoClose={2000} />
     </div>
   );
 };

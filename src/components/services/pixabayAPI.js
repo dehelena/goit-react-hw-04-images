@@ -7,6 +7,5 @@ export const requestImages = async (query, page) => {
   const response = await axios.get(
     `/?q=${query}&page=${page}&key=${pixabayKey}&image_type=photo&orientation=horizontal&per_page=12`
   );
-  // console.log(response.data);
   return response.data;
 };

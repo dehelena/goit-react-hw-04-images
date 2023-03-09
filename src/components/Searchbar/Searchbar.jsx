@@ -15,6 +15,7 @@ const Searchbar = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
+    // рендер, коли запит пустий рядок
     if (query.trim() === '') {
       return toast.warn('Please enter search parameter');
     }
