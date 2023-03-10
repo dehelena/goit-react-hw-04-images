@@ -16,20 +16,6 @@ export const App = () => {
   const [page, setPage] = useState(1);
   const [totalHits, setTotalHits] = useState(null);
 
-  const handleLoadMore = () => {
-    setPage(prevPage => prevPage + 1);
-  };
-
-  const handleSearchbarSubmit = query => {
-    setQuery(query);
-    setImages([]);
-    setPage(1);
-  };
-
-  const checkLoadMore = (page, totalHits) => {
-    return page < Math.ceil(totalHits / 12);
-  };
-
   useEffect(() => {
     if (query === '') return; //щоб не запускалась на етапі першого mount компонента
 
@@ -47,7 +33,6 @@ export const App = () => {
           toast.success(`We found ${totalHits} images`);
         }
 
-        // this.setState({ images });
         setImages(prevImages => [...prevImages, ...hits]);
         setTotalHits(totalHits);
       } catch (error) {
@@ -58,6 +43,20 @@ export const App = () => {
     };
     fetchImages(query, page);
   }, [query, page]);
+
+  const handleLoadMore = () => {
+    setPage(prevPage => prevPage + 1);
+  };
+
+  const handleSearchbarSubmit = query => {
+    setQuery(query);
+    setImages([]);
+    setPage(1);
+  };
+
+  const checkLoadMore = (page, totalHits) => {
+    return page < Math.ceil(totalHits / 12);
+  };
 
   return (
     <div>
