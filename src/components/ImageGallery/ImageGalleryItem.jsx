@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { Modal } from 'components/Modal/Modal';
 import css from './ImageGalleryItem.module.css';
 
-export const ImageGalleryItem = ({ webformatURL, largeImageURL, tags }) => {
+export const ImageGalleryItem = ({
+  image: { webformatURL, largeImageURL, tags },
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
